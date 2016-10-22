@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rationale_title">Permissão negada</string>
+    <string name="rationale_retry">Tentar novamente</string>
+    <string name="rationale_dismiss">Dispensar</string>
+</resources>
