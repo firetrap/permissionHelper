@@ -1,18 +1,22 @@
 PermissionHelper
 =====
-
-dependencies {
-
-compile 'itpeople:pt.itpeople.permissionhelper:2.0.1'
-  
-compile 'itpeople:pt.itpeople.app:3.1.1'
-
-compile 'itpeople:pt.itpeople.common:3.1.1'
-
-compile 'com.android.support:appcompat-v7:23.2.0'
-
+How do I add PermissionHelper to my project?
+------------------- 
+Add it in your root build.gradle at the end of repositories:
+```
+allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
 }
-
+```
+And in your module gradle build file:
+```
+dependencies {
+		compile 'com.github.firetrap:permissionHelper:1.0.0'
+	}
+```
 How do I use PermissionHelper?
 -------------------
 
