@@ -22,6 +22,12 @@ How do I use PermissionHelper?
 
 Simple use cases will look something like this:
 
+Manifest:
+
+```xml
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+```
+
 ```java
 private PermissionHelper.PermissionBuilder permissionRequest;
 private static final int REQUEST_STORAGE_CONTACTS = 2;
