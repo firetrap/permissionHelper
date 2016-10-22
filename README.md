@@ -37,8 +37,8 @@ private static final int REQUEST_STORAGE_CONTACTS = 2;
 		public void onClick(View v) {
 
 
-			permissionRequest = PermissionHelper.with(mFragment)
-					.request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WRITE_CONTACTS)
+			permissionRequest = PermissionHelper.with(YOUR_FRAGMENT_OR_ACTIVITY)
+					.build(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WRITE_CONTACTS)
 					.onPermissionsDenied(onDenyAction)
 					.onPermissionsGranted(onGrantAction)
 					.request(REQUEST_STORAGE_CONTACTS);
