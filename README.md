@@ -73,3 +73,19 @@ private static final int REQUEST_STORAGE_CONTACTS = 2;
 	}
 
 ```
+
+Extras:
+-------------------
+
+You can create a dialog theme to show the rational dialog (If you want to use the system default pass null), for this you need to create a "DialogTheme":
+```xml
+ <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--buttons color-->
+        <item name="colorAccent">@color/colorPrimary</item>
+        <!--title and message color-->
+        <item name="android:textColorPrimary">@color/title_text_color</item>
+        <!--dialog background-->
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+    </style>
+```
+
