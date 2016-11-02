@@ -14,7 +14,7 @@ allprojects {
 And in your module gradle build file:
 ```
 dependencies {
-		compile 'com.github.firetrap:permissionHelper:1.0.0'
+		compile 'com.github.firetrap:permissionHelper:1.0.1'
 	}
 ```
 How do I use PermissionHelper?
