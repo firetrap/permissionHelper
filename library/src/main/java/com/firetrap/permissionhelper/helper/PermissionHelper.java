@@ -26,46 +26,23 @@ import java.util.Arrays;
 public class PermissionHelper {
 
     private static final String TAG = "PermissionHelper";
-    private static Fragment mFragment;
-    private static Activity mActivity;
-    private static Context context;
 
     public static PermissionFactory with(Fragment fragment) {
-        mFragment = fragment;
-        context = fragment.getActivity();
-        return new PermissionFactory();
+
+        return new PermissionFactory(fragment);
     }
 
     public static PermissionFactory with(Activity activity) {
-        mActivity = activity;
-        context = activity;
 
-        return new PermissionFactory();
+        return new PermissionFactory(activity);
     }
 
-    public static boolean checkPermissions(Fragment fragment, String... permissionNames) {
+    public static boolean checkPermissions(Context context, String... permissionNames) {
         boolean permissionGranted = true;
 
         for (String permission : permissionNames) {
 
-            int permissionCheck = ContextCompat.checkSelfPermission(fragment.getActivity(), permission);
-
-            if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-
-                permissionGranted = false;
-
-            }
-        }
-
-        return permissionGranted;
-    }
-
-    public static boolean checkPermissions(Activity activity, String... permissionNames) {
-        boolean permissionGranted = true;
-
-        for (String permission : permissionNames) {
-
-            int permissionCheck = ContextCompat.checkSelfPermission(activity, permission);
+            int permissionCheck = ContextCompat.checkSelfPermission(context, permission);
 
             if (permissionCheck == PackageManager.PERMISSION_DENIED) {
 
@@ -81,14 +58,25 @@ public class PermissionHelper {
 
         private static final String TAG = "PermissionBuilder";
 
+        private Fragment fragment;
+        private Activity activity;
+        private Context context;
+
         private ArrayList<SinglePermission> notGrantedPermissionsList = new ArrayList<>();
         private int mRequestCode;
         private ArrayList<String> mRequestPermissions;
         private OnGrantAction mGrantAction;
         private OnDenyAction mDenyAction;
 
-        public PermissionBuilder(String[] permissionNames) {
+        public PermissionBuilder(Activity activity, String[] permissionNames) {
+            this.activity = activity;
+            this.context = activity;
+            mRequestPermissions = new ArrayList<>(Arrays.asList(permissionNames));
+        }
 
+        public PermissionBuilder(Fragment fragment, String[] permissionNames) {
+            this.fragment = fragment;
+            this.context = fragment.getActivity();
             mRequestPermissions = new ArrayList<>(Arrays.asList(permissionNames));
         }
 
@@ -151,12 +139,12 @@ public class PermissionHelper {
                             permissionsList.add(singlePermission.getPermissionName());
                         }
 
-                        if (mFragment != null) {
+                        if (fragment != null) {
 
-                            mFragment.requestPermissions(permissionsList.toArray(new String[permissionsList.size()]), mRequestCode);
+                            fragment.requestPermissions(permissionsList.toArray(new String[permissionsList.size()]), mRequestCode);
                         } else {
 
-                            mActivity.requestPermissions(permissionsList.toArray(new String[permissionsList.size()]), mRequestCode);
+                            activity.requestPermissions(permissionsList.toArray(new String[permissionsList.size()]), mRequestCode);
                         }
                     }
 

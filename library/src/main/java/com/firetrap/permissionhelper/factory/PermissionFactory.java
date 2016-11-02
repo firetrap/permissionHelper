@@ -1,5 +1,8 @@
 package com.firetrap.permissionhelper.factory;
 
+import android.app.Activity;
+import android.app.Fragment;
+
 import com.firetrap.permissionhelper.helper.PermissionHelper;
 
 /**
@@ -7,14 +10,37 @@ import com.firetrap.permissionhelper.helper.PermissionHelper;
  */
 public class PermissionFactory {
 
-	public PermissionHelper.PermissionBuilder build(String permissionName) {
+    private Activity activity;
+    private Fragment fragment;
 
-		return new PermissionHelper.PermissionBuilder(new String[]{permissionName});
-	}
+    public PermissionFactory(Activity activity) {
+        this.activity = activity;
+    }
 
-	public PermissionHelper.PermissionBuilder build(String... permissionNames) {
+    public PermissionFactory(Fragment fragment) {
+        this.fragment = fragment;
+    }
 
-		return new PermissionHelper.PermissionBuilder(permissionNames);
-	}
+    public PermissionHelper.PermissionBuilder build(String permissionName) {
+
+        if (activity != null) {
+
+            return new PermissionHelper.PermissionBuilder(activity, new String[]{permissionName});
+        } else {
+
+            return new PermissionHelper.PermissionBuilder(fragment, new String[]{permissionName});
+        }
+    }
+
+    public PermissionHelper.PermissionBuilder build(String... permissionNames) {
+
+        if (activity != null) {
+
+            return new PermissionHelper.PermissionBuilder(activity, permissionNames);
+        } else {
+
+            return new PermissionHelper.PermissionBuilder(fragment, permissionNames);
+        }
+    }
 
 }
