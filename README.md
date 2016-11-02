@@ -53,7 +53,7 @@ private static final int REQUEST_STORAGE_CONTACTS = 2;
 			// Should we show an explanation?
 			if (shouldShowRequestPermissionRationale) {
 
-				permissionRequest.showRational(R.string.rationale_description, R.style.DialogTheme);
+				permissionRequest.showRational(R.string.rationale_title,R.string.rationale_description, R.style.DialogTheme);
 			}
 		}
 	};
