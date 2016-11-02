@@ -1,4 +1,4 @@
-PermissionHelper
+PermissionHelper - minSdkVersion 15
 =====
 How do I add PermissionHelper to my project?
 ------------------- 
