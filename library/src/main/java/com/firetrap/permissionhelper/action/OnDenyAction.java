@@ -5,6 +5,6 @@ package com.firetrap.permissionhelper.action;
  */
 public abstract class OnDenyAction {
 
-    public abstract void call(int requestCode, boolean shouldShowRequestPermissionRationale);
+    public abstract void call(int requestCode, boolean shouldShowRationale);
 }
 
